@@ -1,8 +1,15 @@
 package order;
 
-public class Order {
+import notification.Observer;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Order implements Observable {
     private Long orderNumber;
     private OrderStatus orderStatus;
+    private Set<Observer> regisObserver = new HashSet<>();
+
 
     public Order(Long orderNumber, OrderStatus orderStatus) {
         this.orderNumber = orderNumber;
@@ -23,5 +30,27 @@ public class Order {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        regisObserver.add(observer);
+    }
+
+    @Override
+    public void unregisterObserver(Observer observer) {
+        regisObserver.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        for (Observer observer : regisObserver){
+            observer.update(this);
+        }
+    }
+
+    public void changeOrderStatus(OrderStatus orderStatus){
+        setOrderStatus(orderStatus);
+        notifyObserver();
     }
 }

@@ -12,9 +12,18 @@ public class main {
         MobileApp mobileApp = new MobileApp();
         Sms sms = new Sms();
 
-        email.getOrderStatus(order);
-        mobileApp.getOrderStatus(order);
-        sms.getOrderStatus(order);
+        order.registerObserver(email);
+        order.registerObserver(mobileApp);
+        order.registerObserver(sms);
+
+        order.notifyObserver();
+
+        System.out.println("------------------");
+
+        order.unregisterObserver(email);
+
+        order.changeOrderStatus(OrderStatus.WYSLANE);
+//        order.notifyObserver();
 
     }
 }
