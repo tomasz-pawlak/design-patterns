@@ -1,29 +1,22 @@
-import notification.Email;
-import notification.MobileApp;
-import notification.Sms;
-import order.Order;
-import order.OrderStatus;
-
 public class main {
     public static void main(String[] args) {
-        Order order = new Order(12L, OrderStatus.ODEBRANE);
+        GuessGame guessGame = GuessGame.getInstance();
 
-        Email email = new Email();
-        MobileApp mobileApp = new MobileApp();
-        Sms sms = new Sms();
+        guessGame.play();
 
-        order.registerObserver(email);
-        order.registerObserver(mobileApp);
-        order.registerObserver(sms);
+        int score = guessGame.getScore();
 
-        order.notifyObserver();
+        GuessGame anotherGameReference = GuessGame.getInstance();
 
-        System.out.println("------------------");
-
-        order.unregisterObserver(email);
-
-        order.changeOrderStatus(OrderStatus.WYSLANE);
-//        order.notifyObserver();
+        if (guessGame == anotherGameReference) {
+            System.out.println("Singleton!");
+            if (score == anotherGameReference.getScore()) {
+                System.out.println("I punkty się zgadzają!");
+            }
+        }
+        System.out.println("Liczba punktów to:" + score);
 
     }
+
+
 }
