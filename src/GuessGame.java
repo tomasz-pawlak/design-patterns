@@ -6,10 +6,14 @@ public class GuessGame {
     int score = 0;
     Scanner scanner = new Scanner(System.in);
 
+
+    //prywatny konstruktor, zapobiegają tworzeniom instancji poza classa
+    //aby zabezpieczyc sie przed zmiana na public, mozna stworzyc singletom jako enum
     private GuessGame() {
 
     }
 
+    //zapobiega problemom z wielowatkowoscia, getinstance nie potrzebuje sprawdzc czy jest nullem, gdyz classloader wczytuje ja
     private static GuessGame instance = new GuessGame();
 
 
@@ -36,6 +40,8 @@ public class GuessGame {
     }
 
 
+    //tworzenie jednej instancji
+    //aby zapobiec problemom dodac synchronized lub podwojny check 2xif z synchornized
     public static GuessGame getInstance() {
         return instance;
     }
