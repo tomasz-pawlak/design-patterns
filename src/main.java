@@ -1,4 +1,4 @@
-import House.House;
+package House;
 
 public class main {
 
@@ -12,13 +12,21 @@ public class main {
     //Można używać Lombok, który przyśpieszy tworzenie @Builder
     public static void main(String[] args) {
 
-         House house = new House.HouseBuilder()
-                 .buildDoors("4")
-                 .buildWalls("10")
-                 .buildRoofs("1")
-                 .build();
+        SmallHouse smallHouseBuilder = new SmallHouse();
+        BigHouse bigHouseBuilder = new BigHouse();
 
-        System.out.println(house);
+        HouseDirector smallhouseDirector = new HouseDirector(smallHouseBuilder);
+        HouseDirector bigHouseDirector = new HouseDirector(bigHouseBuilder);
+
+        smallhouseDirector.buildHouse();
+        bigHouseDirector.buildHouse();
+
+        House smallHouse = smallhouseDirector.getHouse();
+        House bigHouse = bigHouseDirector.getHouse();
+
+        System.out.println(smallHouse);
+        System.out.println(bigHouse);
+
 
     }
 
