@@ -1,23 +1,21 @@
-import Units.*;
+import Car.Car;
+import Car.CommonwealthFactory;
+import Car.ContinentalFactory;
+import Car.Factory;
+import Car.VolvoModel;
+import Car.FordModel;
 
 public class main {
 
-
-    //Bardzo czesto uzywany metod fabrykuja czesciej niz fabryka abstrakcyjna(framwerki robia wszystko). Enkapsuluja classy.
-    // Uzywamy abstrakcji czyli fabryki
     public static void main(String[] args) {
 
-        Factory blueFactory = new BlueFactory();
-        Factory redFactory = new RedFactory();
+        Factory commonFactory = new CommonwealthFactory();
+        Factory continentalFactory = new ContinentalFactory();
 
-        MechanizedUnit redTank = redFactory.createMechanizedUnit(UnitType.TANK);
-        InfantryUnit redInfantry = redFactory.createInfantryUnit(UnitType.RIFLEMAN);
-        AirUnit redAir = redFactory.createAirUnit(UnitType.HELICOPTER);
+        Car volvo = commonFactory.buildVolvo(VolvoModel.S60);
+        System.out.println(volvo.getSteeringWheelPosition());
 
-        MechanizedUnit blueTank = blueFactory.createMechanizedUnit(UnitType.TANK);
-        InfantryUnit blueInfantry = blueFactory.createInfantryUnit(UnitType.RIFLEMAN);
-        AirUnit blueAir = blueFactory.createAirUnit(UnitType.HELICOPTER);
+        Car ford = continentalFactory.buildFord(FordModel.ESCORT);
+        System.out.println(ford.getSteeringWheelPosition());
     }
-
-
 }
