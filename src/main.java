@@ -1,21 +1,23 @@
-import Car.Car;
-import Car.CommonwealthFactory;
-import Car.ContinentalFactory;
-import Car.Factory;
-import Car.VolvoModel;
-import Car.FordModel;
+import Units.Grunt;
+import Units.Shaman;
+import Units.WitchDoctor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class main {
 
+    //Pyłek używany jest aby odciążyć pamięć, przy tworzeniu dużej ilości obiektów
+    //wyodrębnienie części wspólnej dla tych miliona obiektów do 1 pojedynczego obiektu i wspoldzieleniue miedzy innymi
+    //czy wogole warto? wiecej pracy niz pozytku
     public static void main(String[] args) {
+        List<Object> objects = new ArrayList<>();
 
-        Factory commonFactory = new CommonwealthFactory();
-        Factory continentalFactory = new ContinentalFactory();
+        for (int i =0; i<1000000;i++){
+            objects.add(new Shaman(0,0));
+            objects.add(new Grunt(5,5));
+            objects.add(new WitchDoctor(10,10));
+        }
 
-        Car volvo = commonFactory.buildVolvo(VolvoModel.S60);
-        System.out.println(volvo.getSteeringWheelPosition());
-
-        Car ford = continentalFactory.buildFord(FordModel.ESCORT);
-        System.out.println(ford.getSteeringWheelPosition());
     }
 }
