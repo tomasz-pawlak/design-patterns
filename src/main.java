@@ -1,9 +1,5 @@
-import Units.Grunt;
-import Units.Shaman;
-import Units.WitchDoctor;
+import Units.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class main {
 
@@ -11,13 +7,15 @@ public class main {
     //wyodrębnienie części wspólnej dla tych miliona obiektów do 1 pojedynczego obiektu i wspoldzieleniue miedzy innymi
     //czy wogole warto? wiecej pracy niz pozytku
     public static void main(String[] args) {
-        List<Object> objects = new ArrayList<>();
+        ChessPiece blackKing = new BlackKing("king","g","1");
+        ChessPiece whiteTowe = new WhiteTower("tower","a","1");
 
-        for (int i =0; i<1000000;i++){
-            objects.add(new Shaman(0,0));
-            objects.add(new Grunt(5,5));
-            objects.add(new WitchDoctor(10,10));
-        }
+        ChessPiece whiteQueen = new WhiteQueen("Queen","k","6");
+        ChessPiece blackHorse = new BlackHorse("horse","j","k");
+
+
+        System.out.println(blackKing.getColor()==blackHorse.getColor());
+        System.out.println(whiteTowe.getColor()==whiteQueen.getColor());
 
     }
 }
