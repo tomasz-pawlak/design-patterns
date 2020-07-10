@@ -1,20 +1,23 @@
-import decorator.*;
+import Message.Message;
+import Officer.Officer;
+import Officer.OfficerRank;
+import Officer.Sergeant;
+import Officer.Captain;
+import Officer.General;
 
-
-//Minusy - bazuje na dziedziczeniu(tylko 1 w javie), mozliwość nadpisywania róznych metod moze stworzyc bałagan
-//Przykłady w javie to inputStream
+//Niezbyt popularny, pozbycie sie zbyt duzej ilosci if'ow. Dobre praktyki programistyczne. Przekazywanie jakiegos zadania wyżej.
 public class main {
     public static void main(String[] args) {
+         Message message = new Message("Retreat!!",9000, OfficerRank.GENERAL);
 
-        System.out.println("New meal:");
-        Meal riceMeal = new RiceMeal();
-        riceMeal.prepareMeal();
-        System.out.println("\nNew meal:");
-        Meal meal= new ShrimpMealDecorator(new RiceMeal());
-        meal.prepareMeal();
-        System.out.println("\nNowy posiłek: ");
-        Meal potatoMealWithChickenAndSauce = new SauceMealDecorator(new ChickenMealDecorator(new PotatoMeal()));
-        potatoMealWithChickenAndSauce.prepareMeal();
+        Officer sergeant = new Sergeant();
+        Officer captain = new Captain();
+        Officer general = new General();
+
+        sergeant.setSuperiorOfficer(captain);
+        captain.setSuperiorOfficer(general);
+
+        sergeant.processMessage(message);
     }
 
 
