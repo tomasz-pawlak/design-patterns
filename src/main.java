@@ -1,23 +1,19 @@
-import Message.Message;
-import Officer.Officer;
-import Officer.OfficerRank;
-import Officer.Sergeant;
-import Officer.Captain;
-import Officer.General;
+import Child.*;
+import MotherRequest.MotherRequest;
 
 //Niezbyt popularny, pozbycie sie zbyt duzej ilosci if'ow. Dobre praktyki programistyczne. Przekazywanie jakiegos zadania wyżej.
 public class main {
     public static void main(String[] args) {
-         Message message = new Message("Retreat!!",9000, OfficerRank.GENERAL);
+        MotherRequest motherRequest = new MotherRequest(Shelf.MEDIUM);
 
-        Officer sergeant = new Sergeant();
-        Officer captain = new Captain();
-        Officer general = new General();
+        Child paulina = new Paulina();
+        Child tomek = new Tomek();
+        Child bartek = new Bartek();
 
-        sergeant.setSuperiorOfficer(captain);
-        captain.setSuperiorOfficer(general);
+        paulina.setTallerChild(tomek);
+        tomek.setTallerChild(bartek);
 
-        sergeant.processMessage(message);
+        paulina.processRequest(motherRequest);
     }
 
 
