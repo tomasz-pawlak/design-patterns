@@ -1,18 +1,23 @@
-import template.AutomatCarStartingSequence;
-import template.CarStartingSequence;
-import template.ClassicCarStartingSequence;
-import work.Monday;
-import work.TypeOfTransport;
-import work.WeekDay;
+import workshop.Robot;
+import workshop.WorkshopApp;
+import workshop.command.RobotCutCommand;
+import workshop.command.RobotTurnoffCommand;
+import workshop.command.RobotTurnonCommand;
 
-//Bardzo popularny w Springu, jdbc template, np resttemplate (ogolnie template). Minus to ze clase mozna extande tylko 1
-// klase, ale nie mozna zrobic tego w interface - bo uzytkownik moze podmnienic metody, ktorych nie chcemy
+//dosc popularny, uzywany glownie do enkapsulacji, odizolowac dzialanie od strefy klienta. przykład to Runnable.
+// Wada: każda w innej klasie metoda - bałagan w projekcie
 public class main {
     public static void main(String[] args) {
 
-        WeekDay weekDay = new Monday();
+        Robot robot = new Robot();
+        WorkshopApp workshopApp = new WorkshopApp();
 
-        weekDay.sameDay(TypeOfTransport.CAR);
+        workshopApp.addToList(new RobotTurnonCommand(robot));
+        workshopApp.addToList(new RobotCutCommand(robot));
+        workshopApp.addToList(new RobotTurnoffCommand(robot));
+
+        workshopApp.run();
+
     }
 
 
