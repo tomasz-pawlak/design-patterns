@@ -1,19 +1,17 @@
-import Child.*;
-import MotherRequest.MotherRequest;
+import template.AutomatCarStartingSequence;
+import template.CarStartingSequence;
+import template.ClassicCarStartingSequence;
 
-//Niezbyt popularny, pozbycie sie zbyt duzej ilosci if'ow. Dobre praktyki programistyczne. Przekazywanie jakiegos zadania wyżej.
+//Bardzo popularny w Springu, jdbc template, np resttemplate (ogolnie template). Minus to ze clase mozna extande tylko 1
+// klase, ale nie mozna zrobic tego w interface - bo uzytkownik moze podmnienic metody, ktorych nie chcemy
 public class main {
     public static void main(String[] args) {
-        MotherRequest motherRequest = new MotherRequest(Shelf.MEDIUM);
+        CarStartingSequence carStartingSequence = new ClassicCarStartingSequence();
 
-        Child paulina = new Paulina();
-        Child tomek = new Tomek();
-        Child bartek = new Bartek();
+        carStartingSequence.startingSequence();
 
-        paulina.setTallerChild(tomek);
-        tomek.setTallerChild(bartek);
-
-        paulina.processRequest(motherRequest);
+        CarStartingSequence carStartingSequence1 = new AutomatCarStartingSequence();
+        carStartingSequence1.startingSequence();
     }
 
 
