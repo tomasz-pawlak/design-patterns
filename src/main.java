@@ -1,25 +1,17 @@
-import workshop.CoffeeMaker;
-import workshop.Robot;
-import workshop.WorkshopApp;
-import workshop.command.*;
+import musicPlayer.MusicPlayer;
+import musicPlayer.MusicPlayerRemote;
+import musicPlayer.command.MusicPlayerPlayFirstTrack;
 
 //dosc popularny, uzywany glownie do enkapsulacji, odizolowac dzialanie od strefy klienta. przykład to Runnable.
 // Wada: każda w innej klasie metoda - bałagan w projekcie
 public class main {
     public static void main(String[] args) {
 
-        Robot robot = new Robot();
-        WorkshopApp workshopApp = new WorkshopApp();
-        CoffeeMaker coffeeMaker = new CoffeeMaker();
+        MusicPlayer musicPlayer = new MusicPlayer();
+        MusicPlayerRemote musicPlayerRemote = new MusicPlayerRemote();
 
-        workshopApp.addToList(new RobotTurnonCommand(robot));
-        workshopApp.addToList(new RobotCutCommand(robot));
-        workshopApp.addToList(new RobotTurnoffCommand(robot));
-
-        workshopApp.addToList(new CoffeeMakerStart(coffeeMaker));
-        workshopApp.addToList(new CoffeeMakerStop(coffeeMaker));
-
-        workshopApp.run();
+        musicPlayerRemote.setMusicPlayerCommand(new MusicPlayerPlayFirstTrack(musicPlayer));
+        musicPlayerRemote.pressButton();
 
     }
 
