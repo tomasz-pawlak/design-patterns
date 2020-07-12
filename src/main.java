@@ -2,22 +2,24 @@
 //Np forumlarz - ktos wykał pierwszą stronę formularza, pomylił się na piątej i chce wrócić, bez straty.
 //W sprinhu webflow. Enkapsulacja najważniejsza w tym wszystkim
 
-import smart_app.SmartApp;
-import smart_app.SmartAppCaretaker;
+import operatingSystem.OperatingSystem;
+import operatingSystem.OperatingSystemCaretaker;
 
 public class main {
     public static void main(String[] args) {
-        SmartAppCaretaker smartAppCaretaker = new SmartAppCaretaker();
-        SmartApp smartApp = new SmartApp();
 
-        smartApp.changeVersion(1.1);
-        smartApp.changeVersion(1.2);
 
-        smartAppCaretaker.addMemento(smartApp.save());
+        OperatingSystemCaretaker caretaker = new OperatingSystemCaretaker();
+        OperatingSystem operatingSystem = new OperatingSystem();
 
-        smartApp.changeVersion(2.0);
+        operatingSystem.createBackup();
+        operatingSystem.createBackup();
 
-        smartAppCaretaker.getMemento(0);
+        caretaker.addMemento(operatingSystem.save());
+
+        operatingSystem.createBackup();
+
+        caretaker.getMemento();
 
     }
 
