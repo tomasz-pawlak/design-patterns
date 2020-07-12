@@ -3,16 +3,19 @@
 //Elastyka
 
 
-import eggCoocker.Chef;
-import eggCoocker.HardBoiledEggCooker;
+import calculator.PriceCalculator;
+import calculator.SalePrice;
 
 public class main {
     public static void main(String[] args) {
 
-        Chef chef = new Chef("Mateusz");
-        chef.setEggCooker(new HardBoiledEggCooker());
+        PriceCalculator priceCalculator = new PriceCalculator();
 
-        chef.cook();
+        priceCalculator.setPricingStrategy(new SalePrice());
+
+        priceCalculator.calculate(50, true);
+
+
     }
 
 
