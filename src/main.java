@@ -1,26 +1,18 @@
-//Wykorzystywany w celu zapamietania stanu obiektu, wydzielenia stanu do osobnej kalsy i oddanie tej kontroli.
-//Np forumlarz - ktos wykał pierwszą stronę formularza, pomylił się na piątej i chce wrócić, bez straty.
-//W sprinhu webflow. Enkapsulacja najważniejsza w tym wszystkim
+//Popularny. Wydzielenie zachowania z klasy. Rozdzielenie zachowania na klasie kontekstowej. Klasa główna nie musi znać
+//wszystkiego, wystarczy, ze wykona strategie. Istotne: ustawienie podsczas runtime app(w czasie działąnia) - mozna zmieniac w kazdej chwilii,
+//Elastyka
 
-import operatingSystem.OperatingSystem;
-import operatingSystem.OperatingSystemCaretaker;
+
+import eggCoocker.Chef;
+import eggCoocker.HardBoiledEggCooker;
 
 public class main {
     public static void main(String[] args) {
 
+        Chef chef = new Chef("Mateusz");
+        chef.setEggCooker(new HardBoiledEggCooker());
 
-        OperatingSystemCaretaker caretaker = new OperatingSystemCaretaker();
-        OperatingSystem operatingSystem = new OperatingSystem();
-
-        operatingSystem.createBackup();
-        operatingSystem.createBackup();
-
-        caretaker.addMemento(operatingSystem.save());
-
-        operatingSystem.createBackup();
-
-        caretaker.getMemento();
-
+        chef.cook();
     }
 
 
