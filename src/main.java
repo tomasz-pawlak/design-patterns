@@ -1,19 +1,20 @@
-//Popularny. Wydzielenie zachowania z klasy. Rozdzielenie zachowania na klasie kontekstowej. Klasa główna nie musi znać
-//wszystkiego, wystarczy, ze wykona strategie. Istotne: ustawienie podsczas runtime app(w czasie działąnia) - mozna zmieniac w kazdej chwilii,
-//Elastyka
+//behawioralny, jedny z gang of 4. Zastosowanie - akcje na klasach ktore nie maja ze soba wiele wspolnego.
+//klasy czesto rozboduwowane, rozwijane to sie nie sprawdzi, wtedy trza aktualizowac interface Visitor
 
-
-import calculator.PriceCalculator;
-import calculator.SalePrice;
+import activity.Squash;
+import activity.Treadmill;
+import visitor.VisitorImpl;
 
 public class main {
     public static void main(String[] args) {
 
-        PriceCalculator priceCalculator = new PriceCalculator();
+        Treadmill treadmill = new Treadmill(20);
+        Squash squash = new Squash(50);
 
-        priceCalculator.setPricingStrategy(new SalePrice());
+        VisitorImpl visitor = new VisitorImpl();
 
-        priceCalculator.calculate(50, true);
+        visitor.visit(squash);
+        visitor.visit(treadmill);
 
 
     }
