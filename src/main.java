@@ -1,18 +1,16 @@
-//poprawia czytelnosc kodu i umozliwia testy jednostkowe. Warto trzymac w paczce. Porównowany ze strategia
+//fasada troche jak interface uzytkownika - nie musi wiedziec co jest podspodem. Stosowane dla bezpieczenstwa.
+//prosty wrzocec - dlaschowania kodu przed klientem lub uproscic dla klienta
+//zalety: bezpieczenstwo,
+//wady: zalezna od class - jesli modyfikujemy classy, trzeba tez fasade
 
 
-import state.CoffeeMaker;
+import deliveryBox.DeliveryBoxFacade;
 
 public class main {
     public static void main(String[] args) {
 
-        CoffeeMaker coffeeMaker = new CoffeeMaker();
-
-        coffeeMaker.insertTheCoin();
-        coffeeMaker.pushTheButton();
-        coffeeMaker.takeTheCup();
+        DeliveryBoxFacade deliveryBoxFacade = new DeliveryBoxFacade();
+        deliveryBoxFacade.pickupPackage();
     }
-
-
 }
 
